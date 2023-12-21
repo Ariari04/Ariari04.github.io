@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+<head>
+    <meta charset="UTF-8">
+    <title>Beer Pong</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="cup.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root{
+            --top:0px;
+            --top325:325px;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            outline: none;
+        }
+        body{
+            overflow-x: hidden;
+            display: block;
+        }
+        #reshoot, #restart{
+            margin: 10rem auto;
+            font-size: 2rem;
+            padding: 1rem 2rem;
+            border-radius: 0.3rem;
+            display: none;
+            color: black; 
+            border: 3px solid black;
+            background-color: yellow;
+        }
+        #reshoot:hover, #restart:hover{
+            cursor: pointer;
+            background-color: black;
+            color: yellow;
+        }
+        #time {
+          margin: auto;
+          display: block;
+          text-align: center;
+          font-size: 3rem;
+          font-family: sans-serif;
+          font-weight: bold;
+        }
+        
+        #time{
+            
+        }
+        /*
+        #time::after{
+            content: " seconds";
+        }
+        */
+        .cups{
+            margin: auto; 
+            width: 310px;
+        }
+        .cup{
+            width: 100px;
+            position: relative;
+        }
+        .row2{
+            margin-top: -10rem;
+            margin-left: 50px;
+        }
+        .row3{
+            margin-top: -10rem;
+            margin-left: 100px;
+        }
+        .cup4{
+            top:5rem;
+        }
+        .cup5{
+            top:5rem;
+        }
+        .cup6{
+            top: 10rem;
+        }
+        .ball{
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        .shooter{
+            position: relative;
+            top: 375px;
+            left: 125px;
+            width: 300px;
+            margin: auto;
+        }
+        .shootX{
+            animation: shootX 1s infinite linear;
+        }
+        @keyframes shootX{
+            0%{left:0px}
+            25%{left:125px}
+            50%{left:0px}
+            75%{left:-125px}
+            100%{left:0px}
+        }
+        .shootY{
+            animation: shootY 1s infinite linear;
+        }
+        @keyframes shootY{
+            0%{top:0px}
+            50%{top:-175px}
+            100%{top:0px}
+        }
+        .fadeAway{
+            animation: fadeAway 1s;
+            opacity: 0
+        }
+        @keyframes fadeAway{
+            0%{opacity: 1}
+            100%{opacity: 0}
+        }
+        .marginTop{
+            animation: marginTop 1s;
+            animation-timing-function: ease;
+        }
+        @keyframes marginTop{
+            0%{top: var(--top)}
+            100%{top: var(--top325)}
+        }
+        
+    </style>
+</head>
+<body id="body">
+<!--  onclick="shootY()"-->
+  <div class="cups">
+  <div class="row">
+    <svg class="cup cup1" id="cup1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 607 805.2"><defs><style>.cls-1{fill:#ff1d25;}.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:17px;}.cls-2{fill:#fff;}</style></defs><title>cup</title><path class="cls-1" d="M210.5,219.5,311.13,793a64.42,64.42,0,0,0,24.52,40.19L382,868.35a38.17,38.17,0,0,0,9.36,5.21,297.44,297.44,0,0,0,226.52-4.67,21.28,21.28,0,0,0,5.9-3.89l27.39-25.41a99.1,99.1,0,0,0,29.7-52.84L796.5,219.5Z" transform="translate(-200 -97)"/><ellipse class="cls-2" cx="303.5" cy="119" rx="295" ry="110.5"/></svg>
+   
+    <svg class="cup cup2" id="cup2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 607 805.2"><defs><style>.cls-1{fill:#ff1d25;}.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:17px;}.cls-2{fill:#fff;}</style></defs><title>cup</title><path class="cls-1" d="M210.5,219.5,311.13,793a64.42,64.42,0,0,0,24.52,40.19L382,868.35a38.17,38.17,0,0,0,9.36,5.21,297.44,297.44,0,0,0,226.52-4.67,21.28,21.28,0,0,0,5.9-3.89l27.39-25.41a99.1,99.1,0,0,0,29.7-52.84L796.5,219.5Z" transform="translate(-200 -97)"/><ellipse class="cls-2" cx="303.5" cy="119" rx="295" ry="110.5"/></svg>
+    
+    <svg class="cup cup3" id="cup3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 607 805.2"><defs><style>.cls-1{fill:#ff1d25;}.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:17px;}.cls-2{fill:#fff;}</style></defs><title>cup</title><path class="cls-1" d="M210.5,219.5,311.13,793a64.42,64.42,0,0,0,24.52,40.19L382,868.35a38.17,38.17,0,0,0,9.36,5.21,297.44,297.44,0,0,0,226.52-4.67,21.28,21.28,0,0,0,5.9-3.89l27.39-25.41a99.1,99.1,0,0,0,29.7-52.84L796.5,219.5Z" transform="translate(-200 -97)"/><ellipse class="cls-2" cx="303.5" cy="119" rx="295" ry="110.5"/></svg>
+  </div>
+  <div class="row row2">
+   <svg class="cup cup4" id="cup4" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 607 805.2"><defs><style>.cls-1{fill:#ff1d25;}.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:17px;}.cls-2{fill:#fff;}</style></defs><title>cup</title><path class="cls-1" d="M210.5,219.5,311.13,793a64.42,64.42,0,0,0,24.52,40.19L382,868.35a38.17,38.17,0,0,0,9.36,5.21,297.44,297.44,0,0,0,226.52-4.67,21.28,21.28,0,0,0,5.9-3.89l27.39-25.41a99.1,99.1,0,0,0,29.7-52.84L796.5,219.5Z" transform="translate(-200 -97)"/><ellipse class="cls-2" cx="303.5" cy="119" rx="295" ry="110.5"/></svg>
+    
+    <svg class="cup cup5" id="cup5" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 607 805.2"><defs><style>.cls-1{fill:#ff1d25;}.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:17px;}.cls-2{fill:#fff;}</style></defs><title>cup</title><path class="cls-1" d="M210.5,219.5,311.13,793a64.42,64.42,0,0,0,24.52,40.19L382,868.35a38.17,38.17,0,0,0,9.36,5.21,297.44,297.44,0,0,0,226.52-4.67,21.28,21.28,0,0,0,5.9-3.89l27.39-25.41a99.1,99.1,0,0,0,29.7-52.84L796.5,219.5Z" transform="translate(-200 -97)"/><ellipse class="cls-2" cx="303.5" cy="119" rx="295" ry="110.5"/></svg>
+  </div>
+  <div class="row row3">
+   <svg class="cup cup6" id="cup6" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 607 805.2"><defs><style>.cls-1{fill:#ff1d25;}.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:17px;}.cls-2{fill:#fff;}</style></defs><title>cup</title><path class="cls-1" d="M210.5,219.5,311.13,793a64.42,64.42,0,0,0,24.52,40.19L382,868.35a38.17,38.17,0,0,0,9.36,5.21,297.44,297.44,0,0,0,226.52-4.67,21.28,21.28,0,0,0,5.9-3.89l27.39-25.41a99.1,99.1,0,0,0,29.7-52.84L796.5,219.5Z" transform="translate(-200 -97)"/><ellipse class="cls-2" cx="303.5" cy="119" rx="295" ry="110.5"/></svg>
+  </div>
+  </div>
+   <div class="shooter"  id="shooter">
+    <svg class="ball shootY" id="ball">
+      <ellipse cx="25" cy="25" rx="24" ry="24"
+  style="fill:hsl(0, 0%, 90%); stroke: black; stroke-weight: 1px;" />
+    </svg>
+  </div>
+  <button id="reshoot" onclick="reshoot1()" >Shoot Again</button>
+  <p id="time"></p>
+  <button id="restart" onclick="location.reload()" >Restart</button>
+</body>
+<script>
+    var body = document.getElementById("body");
+var reshoot = document.getElementById("reshoot");
+var ball = document.getElementById("ball");
+var shooter = document.getElementById("shooter");
+var cupsOut = [];
+document.addEventListener("click", shootY);
+function shootY(){
+    document.removeEventListener("click", shootY); 
+    var top = window.getComputedStyle(ball).getPropertyValue("top");
+    ball.classList.remove("shootY");
+    ball.classList.add("shootX");
+    ball.style.top = top;
+  document.getElementById("html").setAttribute("onclick","shootX('top')");
+    var shootYstr = "shootX('";
+    var shootYstr1 = top.toString();
+    var shootYstr2 = "')";
+    var onclick = shootYstr.concat(shootYstr1, shootYstr2);
+    document.getElementById("html").setAttribute("onclick", onclick);
+    
+}
+function shootX(valueY){
+    document.getElementById("html").setAttribute("onclick","");
+    var top = parseFloat(valueY);
+    var topABS = Math.abs(parseFloat(valueY));
+    var left = window.getComputedStyle(ball).getPropertyValue("left");
+    leftABS = parseFloat(left);
+    ball.classList.remove("shootX");
+    var newtop = top-325;
+    var newtopStr = newtop.toString();
+    var px = "px";
+    var final = newtopStr.concat(px);
+    let root = document.documentElement;
+    root.style.setProperty('--top', (top)+ "px");
+    root.style.setProperty('--top325', (top-325)+ "px");
+    ball.classList.add("marginTop");
+    ball.style.top = final;
+    ball.style.left = left;
+    if(140<topABS && topABS<175 && -125<leftABS && leftABS<-60){
+        removeCup("1");
+    }
+    if(140<topABS && topABS<175 && -40<leftABS && leftABS<40){
+        removeCup("2");
+    }
+    if(140<topABS && topABS<175 && 60<leftABS && leftABS<125){
+        removeCup("3");
+    }
+    if(85<topABS && topABS<140 && -90<leftABS && leftABS<-25){
+        removeCup("4");
+    }
+    if(85<topABS && topABS<140 && 15<leftABS && leftABS<80){
+        removeCup("5");
+    }
+    if(25<topABS && topABS<80 && -45<leftABS && leftABS<45){
+        removeCup("6");
+    }
+    setTimeout(function(){
+        if(cupsOut.length == 6){
+            var time = timer();
+            document.getElementById("time").innerHTML = time + " seconds";
+            document.getElementById("time").style.display="block";
+            document.getElementById("restart").style.display="block";
+        }else{
+            reshoot.style.display = "block";
+        }
+    },1500);
+}
+
+function removeCup(cup){
+    var cupStr = "cup";
+    var element = cupStr.concat(cup);
+    let alreadyExists = cupsOut.includes(cup);
+    if(alreadyExists==false){  
+        cupsOut.push(cup);
+    }
+    setTimeout(function(){
+        document.getElementById(element).classList.add("fadeAway");
+    },1000);
+}
+
+function reshoot1(){
+    reshoot.style.display = "none";
+    ball.classList.add("shootY");
+    ball.style.top = "0px";
+    ball.style.left = "0px";
+    ball.classList.remove("marginTop");
+    setTimeout(function(){
+        document.addEventListener("click", shootY); 
+    },1000);
+}
+var startDate = new Date();
+var startTime = startDate.getTime();
+function timer(){
+    var dateNow = new Date ();
+    var timeNow = dateNow.getTime();
+    var timeDiff = timeNow - startTime;
+    var secondsElapsed = Math.floor(timeDiff/1000);
+    return (secondsElapsed); 
+}
+</script>
+</html>

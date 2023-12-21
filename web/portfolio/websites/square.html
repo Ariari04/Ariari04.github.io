@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра: Красный квадрат</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #game-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+
+        .red-square {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            cursor: pointer;
+        }
+
+        #score,
+        #timer,
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <!-- Квадрат будет добавлен здесь динамически -->
+</div>
+
+<div id="score">Счет: 0</div>
+<div id="timer">Осталось времени: 30 сек</div>
+
+<button onclick="startGame()">Начать сначала</button>
+
+<script>
+    var score = 0;
+    var timerSeconds = 30;
+    var timerInterval;
+    var gameOver = false;
+
+    function createRedSquare() {
+        var redSquare = document.createElement('div');
+        redSquare.className = 'red-square';
+
+        var randomX = Math.floor(Math.random() * (400 - 50));
+        var randomY = Math.floor(Math.random() * (400 - 50));
+        redSquare.style.left = randomX + 'px';
+        redSquare.style.top = randomY + 'px';
+
+        redSquare.addEventListener('click', function() {
+            if (!gameOver) {
+                score++;
+                redSquare.remove();
+                createRedSquare();
+                updateScore();
+            }
+        });
+
+        document.getElementById('game-container').appendChild(redSquare);
+    }
+
+    function updateScore() {
+        document.getElementById('score').innerText = 'Счет: ' + score;
+    }
+
+    function updateTimer() {
+        document.getElementById('timer').innerText = 'Осталось времени: ' + timerSeconds + ' сек';
+    }
+
+    function startGame() {
+        score = 0;
+        timerSeconds = 30;
+        gameOver = false;
+        updateScore();
+        updateTimer();
+
+        document.getElementById('game-container').innerHTML = '';
+
+        createRedSquare(); // Создаем первый красный квадрат
+
+        if (timerInterval) {
+            clearInterval(timerInterval);
+        }
+
+        timerInterval = setInterval(function() {
+            timerSeconds--;
+            updateTimer();
+
+            if (timerSeconds === 0) {
+                endGame();
+            }
+        }, 1000);
+    }
+
+    function endGame() {
+        clearInterval(timerInterval);
+        gameOver = true;
+        alert('Игра окончена! Ваш счет: ' + score);
+    }
+
+    // Запускаем игру при загрузке страницы
+    startGame();
+</script>
+
+</body>
+</html>
